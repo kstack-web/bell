@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ベルこどもクリニック</title>
+	<link rel="stylesheet" href="css/style2.css">
+	<link rel="icon" href="images/favicon.ico">
+	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="director-page">
+	<!-- ヘッダー -->
+	<header class="header">
+		<div class="clinic-logo">
+			<img src="images/クリニックロゴ6_トリミング.png" alt="ベルこどもクリニック">
+		</div>
+		<nav class="nav">
+			<ul>
+				<li>
+					<a href="index.html">
+						<img src="images/トップ画面アイコン/ホームアイコン.png" alt="" class="nav-icon">
+						<span>ホーム</span>
+					</a>
+				</li>
+				<li>
+					<a href="syokai.html">
+						<img src="images/トップ画面アイコン/紹介アイコン.png" alt="" class="nav-icon">
+						<span>院長紹介</span>
+					</a>
+				</li>
+				<li>
+					<a id="reserveLink" href="login" target="_blank" rel="noopener noreferrer">
+						<img src="images/トップ画面アイコン/予約アイコン_resize.png" alt="" class="nav-icon">
+						<span id="reserveNavText">診療予約</span>
+					</a>
+				</li>
+				<li>
+					<a href="index.html#access">
+						<img src="images/トップ画面アイコン/アクセスアイコン.png" alt="" class="nav-icon">
+						<span>アクセス</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="logo">
+			<img src="images/すず子.png" alt="すず子">
+		</div>
+	</header>
+	<!-- ヘッダーここまで -->
+	<h1 class="hero index">クリニック院長紹介</h1>
+	<!-- メイン -->
+	<main>
+		<section class="director">
+    <h2>院長紹介</h2>
+
+    <div class="director-profile">
+      <img src="images/先生顔.png" alt="院長画像">
+
+      <p><strong>院長：</strong>八木 雅史</p>
+
+    <p>
+      地域の皆さまに寄り添い、<br>
+      お子さま一人ひとりに合わせた診療を心がけています。
+    </p>
+	
+    <h3>経歴</h3>
+	
+	</div>
+	
+    <ul>
+      <li>大阪大学 医学部 卒業</li>
+      <li>京都大学医学部附属病院 小児科 勤務</li>
+      <li>ベルこどもクリニック 開院</li>
+    </ul>
+
+    <h3>資格・所属学会</h3>
+    <ul>
+      <li>小児科専門医</li>
+      <li>日本小児科学会 会員</li>
+    </ul>
+  </section>
+	</main>
+	<!-- メインここまで -->
+	<!-- フッター -->
+	<footer>
+		<div class="gotop">
+			<a href="#top"><img src="images/ひつじのメェディ.png" alt="ページトップへ戻る" width="110" height="100"></a>
+		</div>
+		<p class="copyright">&copy; ベルこどもクリニック All Rights Reserved.</p>
+	</footer>
+	<!-- フッターここまで -->
+	<!-- 森の電車アニメーション -->
+<div class="forest-train">
+  <div class="train">
+    <div class="car">
+      <img src="images/キノコ(ウサギ).png" alt="キノコ(ウサギ)">
+    </div>
+    <div class="car">
+      <img src="images/ふくろう.png" alt="ふくろう">
+    </div>
+    <div class="car">
+      <img src="images/くま.png" alt="くま">
+    </div>
+    <div class="car engine">
+      <img src="images/機関車(右).png" alt="機関車">
+    </div>
+  </div>
+  <div class="grass"></div>
+</div>
+<script>
+	const h = new Date().getHours();
+	
+	const reserveLink = document.getElementById("reserveLink");	// ナビ
+	const reserveBtn = document.getElementById("reserveBtn");	// ボタン
+	const reserveNavText = document.getElementById("reserveNavText");
+	
+	if (h >= 17 || h < 6) {
+		// ナビ
+		reserveLink.style.pointerEvents = "none";
+		reserveLink.style.opacity = "0.5";
+		reserveNavText.textContent = "診療予約";
+		
+		// ボタン
+		reserveBtn.style.pointerEvents = "none";
+		reserveBtn.style.opacity = "0.5";
+		reserveBtn.textContent = "受付時間外";
+	}
+</script>
+</body>
+</html>

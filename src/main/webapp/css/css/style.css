@@ -1,0 +1,405 @@
+/* ==================== ベース ==================== */
+html {
+	font-size: 18px;
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+	scroll-behavior: smooth;
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	background-color: #fcf4eb;
+	font-weight: 400;
+	letter-spacing: 0.02em;
+}
+/* ==================== 共通要素 ==================== */
+p, li, td { line-height: 1.7; }
+
+img { max-width: 100%; }
+
+/* 「a:link」と「a:visited」をまとめる */
+a {
+	color: #F07D34;
+	text-decoration: none;
+}
+a:hover {
+	color: #F07D34;
+	text-decoration: underline;
+}
+a:active {
+	color: #F07D34;
+	text-decoration: underline;
+}
+body.director-page {
+	background-color: #FFF7E6;
+	background-image: url("../images/水玉パステル(背景).png");
+	background-repeat: no-repeat;   /* ← 繰り返さない */
+	background-position: center;
+	background-size: cover;         /* ← 画面全体にフィット */
+}
+/* ==================== ヘッダー ==================== */
+.header {
+	padding: 18px 40px;
+	/* 横並べ用 */
+	display: flex;						/* 主役(中の要素を横に並べるモードに切り替える) */
+	align-items: center;				/* 縦方向を中央揃え */
+	justify-content: space-between;		/* 左・中央・右(横方向の並び方ルール) */
+	gap: 24px;
+	position: relative;					/* ←これ必須 */
+	height: auto;
+	min-height: 140px;
+	overflow: visible;					/* はみ出し許可 */
+}
+/* クリニックロゴ */
+.clinic-logo {
+	flex: 0 0 auto;
+	transform: translateY(6px);
+}
+.clinic-logo img {
+	max-width: none;	/* imgのmax-widthを無視 */
+	height: clamp(110px, 11vw, 200px);
+	width: auto;
+}
+.logo {
+	display: none;
+}
+/* ==================== ナビゲーション ==================== */
+.nav {
+	flex: 1;
+	min-width: 0;
+	margin-left: auto;
+}
+.nav ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	gap: 40px;
+	justify-content: flex-end;
+}
+.nav ul li a {
+	display: flex;				/* Flexboxを有効化 */
+	flex-direction: column;		/* 縦方向に並べる */
+	align-items: center;
+	gap: 3px;
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+	font-size: 1.1rem;
+	font-weight: 600;
+	white-space: nowrap;	/* ナビ文字を折り返し表示させない */
+	height: 165px;
+	justify-content: center;
+}
+/* ナビ画像 */
+.nav-icon {
+	width: clamp(50px, 4vw, 80px);
+	height: 90px;
+	object-fit: contain;
+	display: block;
+}
+.nav a {
+	color: #253958; /* 茶系「#2e1401」 */
+}
+.nav a:hover {
+	color: #F07D34;
+	text-decoration: none;
+}
+.nav a:active {
+	color: #F07D34;
+	text-decoration: none;
+}
+/* ==================== ヒーロー ==================== */
+.hero {
+	padding: 10px 0;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	color: #ffffff;
+	text-align: center;
+}
+.hero.index {
+	padding: 200px 0;
+	font-size: 1.8rem;
+	background-image: url(../images/adpDSC_7878.jpg);
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+/* ヒーロー下の紹介カード */
+.hero-note {
+	background-color: #fff8f0;	/* カード背景 */
+	padding: 20px 30px;
+	margin: 60px auto;
+	max-width: 1000px;
+	border-radius: 16px;
+	box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+	text-align: center;
+}
+/* 説明文 */
+.hero-note-text {
+	color: #5B4636;  /* 柔らか茶色 */
+	font-size: 1.1rem;
+	line-height: 1.6;
+	margin-bottom: 16px;
+}
+/* 予約ボタン */
+.btn-reserve {
+	display: inline-block;
+	background-color: #F07D34; /* オレンジ */
+	color: #fff;
+	font-weight: 600;
+	font-size: 1.3rem;
+	padding: 20px 24px;
+	border-radius: 8px;
+	text-decoration: none;
+}
+.hero-note .btn-reserve:hover {
+	color: #fff;
+	text-decoration: none;
+}
+/* 注意書き */
+.reserve-note {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background-color: #FFF3E0;   /* 薄いオレンジ */
+  border-left: 6px solid #F07D34;
+  border-radius: 10px;
+  text-align: center;
+}
+.reserve-title {
+  margin: 0 0 6px 0;
+  font-weight: 700;
+  color: #D65A1F;  /* 少し濃いオレンジ */
+  font-size: 1rem;
+}
+.reserve-note p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #5B4636;  /* 読みやすい茶色 */
+}
+/* ==================== メイン ==================== */
+main {
+	margin: 60px auto;
+	max-width: 1100px;	/* 横幅の最大値を1000→1100に変更 */
+}
+main h2 {
+	margin: 0 0 20px 0;
+	border-bottom: 3px solid rgba(240, 125, 52, 0.5);
+	padding: 0 0 5px 0;
+	color: #253958;
+	font-size: 1.6rem;
+	font-weight: 700;
+}
+/* 「お知らせ」と「診療時間」を横並べに(2/2) */
+.home-flex {
+	display: flex;	/* 横並び */
+	gap: 40px;		/* 間の間隔 */
+	align-items: stretch;
+}
+.home-box {
+	display: flex;
+	flex-direction: column; /* 縦並び */
+}
+/* 左：お知らせ */
+#news {
+	flex: 1.2;
+	
+	/* スクロール用 */
+	display: flex;
+	flex-direction: column;
+	max-height: 330px;
+	overflow-y: auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 16px;
+	box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+#news .news-item {
+	flex-shrink: 0;
+}
+#news h3 {
+	margin: 0 0 6px 0;
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+#news p {
+	margin: 0 0 16px 0;
+	font-size: 0.95rem;
+	color: #5B4636;
+}
+/* 右：診療時間 */
+.clinic {
+	flex: 1;
+	padding: 20px;
+	margin-bottom: 60px;
+	background-color: #fff;
+	border-radius: 16px;
+	box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+.clinic-info {
+	font-size: 1rem;
+	/* テーブルの角が消える問題対処用 */
+	border-collapse: collapse; /* collapse → separate に変更 */
+	/*border-spacing: 0;         枠線の隙間を0に */
+	border-radius: 12px;
+	overflow: hidden; /* borderradiusを効かせるために必須 */
+}
+/* 共通（枠・余白） */
+.clinic-info th, .clinic-info td {
+	border: 1px solid #ddd;
+	padding: 14px;
+}
+/* 見出し */
+.clinic-info th {
+	width: 112px;
+	text-align: center;
+	vertical-align: top;
+	font-weight: normal;
+}
+/* 内容 */
+.clinic-info td {
+  color: #ffa500;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+/* 診療あり */
+.clinic-info td.open {
+	color: #F07D34;
+	font-size: 1.4rem;
+	font-weight: 700;
+}
+/* 休診 */
+.clinic-info td.close {
+	color: #A65F3C;
+	font-size: 1.2rem;
+	font-weight: normal;
+}
+/* 曜日 */
+.clinic-info tr:first-child th {
+	border: none;				/* 1行目（曜日ヘッダ）の枠線だけ消す */
+	background-color: #BA8D65;	/* 変更前f5deb3 */
+	font-weight: 500;
+	color: #ffffff;	/* 白文字 */
+}
+.clinic-info tr:nth-child(2) th {
+  background-color: #FFF7E6; /* 午前 */
+}
+.clinic-info tr:nth-child(3) th {
+  background-color: #EAF7F4; /* 午後 */
+}
+.closed-note {
+	margin-top: 14px;
+	font-size: 1.0rem;
+}
+.closed-label {
+	display: inline-block;
+	padding: 4px 10px;
+	background-color: #f08080;
+	border-radius: 8px;
+	font-weight: 600;
+	margin-right: 6px;
+	color: #ffffff;
+}
+.closed-days {
+	color: #A65F3C;
+	font-weight: 500;	
+}
+
+main table {
+	text-align: center;
+}
+.access {
+	margin-bottom: 60px;
+}
+.access-flex {
+	display: flex;
+	align-items: flex-start;	/* 上揃え */
+	gap: 20px;					/* 画像と文字の間隔 */
+	flex-wrap: wrap;			/* 画面が狭くなったら縦並びに */
+}	
+.access-map {
+	width: 550px;
+	height: auto;
+	border-radius: 12px;
+	box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+.access-info {
+	flex: 1;
+	font-size: 1rem;
+	line-height: 1.6;
+	padding: 0.5em 1em;
+	margin: 2em 0;
+	color: #232323;
+	background: #fff8e8;
+	border-left: solid 10px #ffc06e;
+}
+/* ==================== フッター ==================== */
+.gotop {
+	text-align: center;;
+}
+.copyright {
+	margin-top: 10px;
+	margin-bottom: 0;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	background-color: #253958;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 0.7rem;
+}
+/* ==================== モバイル対応 ==================== */
+@media(max-width: 767px) {
+	.header {
+		padding: 14px 16px;
+		flex-direction: column; /* 縦並び */
+		gap: 5px;
+	}
+	.clinic-logo {
+	transform: none;
+	}
+	.clinic-logo img {
+		height: 140px;
+	}
+	.nav {
+		width: 100%;
+	}
+	.nav ul {
+		display: flex;
+		flex-wrap: nowrap;		/* 改行させない */
+		overflow-x: auto;		/* はみ出たら横にスクロールする */
+		white-space: nowrap;	/* 文字の途中改行を防止 */
+		gap: 40px;
+		justify-content: center;
+		padding-bottom: 6px;
+	}
+	.nav ul li a {
+		font-size: 1rem;	/* スマホ用に少し小さく */
+		gap: 10px;
+		height: auto;		/* ←スマホで165pxはデカすぎなので解除 */
+		padding: 10px 0;
+	}
+	.nav-icon {
+		width: 60px;
+		height: 60px;
+	}
+	main {
+		padding: 0 4%;
+	}
+	.hero.index {
+		padding: 28vh 0;
+	}
+	.home-flex {
+		flex-direction: column;
+	}
+	#news {
+		max-height: none;
+		overflow-y: visible;
+	}
+	/* テーブルはみ出し対策 */
+	.table-wrap {
+		overflow-x: auto;
+	}
+	.clinic-info {
+		min-width: 700px; /* 列が潰れない最低幅 */
+	}
+}
