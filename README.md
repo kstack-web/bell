@@ -1,4 +1,4 @@
-<img width="1157" height="793" alt="image" src="https://github.com/user-attachments/assets/2c0900e0-1c58-416f-966b-87f7a618312e" /># 小児科向け当日診療予約Webアプリ（職業訓練グループワーク）
+# 小児科向け当日診療予約Webアプリ（職業訓練グループワーク）
 
 **使用技術：HTML / CSS / Java / Eclipse**
 
