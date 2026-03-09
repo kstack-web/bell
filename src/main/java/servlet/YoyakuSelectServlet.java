@@ -23,12 +23,9 @@ public class YoyakuSelectServlet extends HttpServlet {
 
         String today = LocalDate.now().toString();
         int nowHour = LocalTime.now().getHour();
-        
-      //DBパス
-        String dbPath = getServletContext().getRealPath("/WEB-INF/db/yoyaku.db");
 
         List<String> times = List.of("9-10", "10-11", "11-12", "16-17", "17-18");
-        YoyakuDAO dao = new YoyakuDAO(dbPath);
+        YoyakuDAO dao = new YoyakuDAO();
         List<String> available = new ArrayList<>();
 
         // ★ 現在時刻より後で、かつ空きがある枠だけを抽出

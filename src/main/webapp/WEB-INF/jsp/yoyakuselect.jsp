@@ -27,8 +27,8 @@
 <body>
    
     <p>受付可能時間</p>
-
-    <form action="yoyakuTimeConfirm" method="post">
+   <form action="<%= request.getContextPath() %>/yoyakuTimeConfirm" method="post">
+  
         <%
             List<String> times = (List<String>)request.getAttribute("availableTimes");
             for(String t : times){

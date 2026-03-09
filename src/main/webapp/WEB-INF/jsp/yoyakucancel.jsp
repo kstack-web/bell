@@ -9,7 +9,7 @@
 </head>
 <body>
     <h3>予約確認・取消</h3>
-    <c:out value="${loginKanja.kanjaName}" />様の予約を取り消しました。
+    <c:out value="${loginUser.kanjaName}" />様の予約を取り消しました。
     <br>
     <p>
     <a href="logout">ログアウト</a>

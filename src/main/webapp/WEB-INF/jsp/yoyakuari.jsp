@@ -12,8 +12,9 @@
 <body>
     <h3>予約確認・取消</h3>
 
-<p><c:out value="${loginKanja.kanjaName}" />様<br></p>
 
+<!--  <p><c:out value="${loginUser.kanjaName}" />様<br></p>-->
+<p><c:out value="${sessionScope.loginUser.kanjaName}" />様<br></p>
 現在予約内容<br>
 <c:set var="t" value="${loginYoyaku.time}" />
 <c:choose>

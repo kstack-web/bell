@@ -6,6 +6,7 @@ public class Yoyaku {
     private String time;
     private int kanjaID;
     private boolean valid;
+    private String kanjaName;
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
@@ -21,4 +22,7 @@ public class Yoyaku {
 
     public boolean isValid() { return valid; }
     public void setValid(boolean valid) { this.valid = valid; }
+    
+    public String getKanjaName() { return kanjaName; }
+    public void setKanjaName(String kanjaName) { this.kanjaName = kanjaName; }
 }

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,44 +14,45 @@ import dao.YoyakuDAO;
 import model.Kanja;
 import model.Yoyaku;
 
-	@WebServlet("/YoyakuConfirm")
-	public class YoyakuConfirmServlet extends HttpServlet {
+@WebServlet("/YoyakuConfirm")
+public class YoyakuConfirmServlet extends HttpServlet {
 
-	    @Override
-	    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	            throws ServletException, IOException {
-	    	//DBパス
-	        String dbPath = getServletContext().getRealPath("/WEB-INF/db/yoyaku.db");
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-	        System.out.println("=== YoyakuConfirmServlet 起動 ===");
+        System.out.println("=== YoyakuConfirmServlet 起動 ===");
 
-	        HttpSession session = request.getSession(false);
-	        if (session == null || session.getAttribute("loginKanja") == null) {
-	            System.out.println("セッションなし → よやくなしへ");
-	            response.sendRedirect(request.getContextPath() + "/yoyakunasi");
-	            return;
-	        }
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("loginUser") == null) {
+            System.out.println("セッションなし → yoyakunasi.jsp");
+            request.getRequestDispatcher("/WEB-INF/jsp/yoyakunasi.jsp")
+                   .forward(request, response);
+            return;
+        }
 
-	        Kanja kanja = (Kanja) session.getAttribute("loginKanja");
-	        int kanjaID = kanja.getKanjaID();
-	        System.out.println("kanjaID = " + kanjaID);
+        Kanja kanja = (Kanja) session.getAttribute("loginUser");
+        int kanjaID = kanja.getKanjaID();
+        String today = LocalDate.now().toString();
 
-	        YoyakuDAO dao = new YoyakuDAO(dbPath);
-	        boolean hasYoyaku = dao.hasTodayYoyaku(kanjaID);
-	        System.out.println("hasYoyaku = " + hasYoyaku);
+        System.out.println("kanjaID = " + kanjaID);
+        System.out.println("today = " + today);
 
-	        if (hasYoyaku) {
-	            // ★ ここを追加
-	            Yoyaku yoyaku = dao.findTodayByKanja(kanjaID);
-	            session.setAttribute("loginYoyaku", yoyaku);
+        YoyakuDAO dao = new YoyakuDAO();
+        boolean hasYoyaku = dao.hasTodayReservation(kanjaID, today);
+        System.out.println("hasYoyaku = " + hasYoyaku);
 
-	            System.out.println("→ yoyakuari.jsp");
-	            request.getRequestDispatcher("/WEB-INF/jsp/yoyakuari.jsp")
-	                   .forward(request, response);
-	        } else {
-	            System.out.println("→ yoyakunasi.jsp");
-	            request.getRequestDispatcher("/WEB-INF/jsp/yoyakunasi.jsp")
-	                   .forward(request, response);
-	        }
-	    }
-	}
+        if (hasYoyaku) {
+            Yoyaku yoyaku = dao.findReservation(kanjaID, today);
+            request.setAttribute("loginYoyaku", yoyaku);
+
+            System.out.println("→ yoyakuari.jsp");
+            request.getRequestDispatcher("/WEB-INF/jsp/yoyakuari.jsp")
+                   .forward(request, response);
+        } else {
+            System.out.println("→ yoyakunasi.jsp");
+            request.getRequestDispatcher("/WEB-INF/jsp/yoyakunasi.jsp")
+                   .forward(request, response);
+        }
+    }
+}

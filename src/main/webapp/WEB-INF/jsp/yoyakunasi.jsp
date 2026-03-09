@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h3>予約確認・取消</h3>
-	<c:out value="${loginKanja.kanjaName}" />様の予約はありません。
+	<c:out value="${loginUser.kanjaName}" />様の予約はありません。
 <br>
 	<p><a href="yoyaku">診察予約</a></p>
 	<p><a href="logout">ログアウト</a></p>

@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import dao.kanjaDAO;
+import dao.KanjaDAO;
 import model.Kanja;
 
 @WebServlet("/login")
@@ -20,10 +20,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        
-        //DBパス
-        String dbPath = getServletContext().getRealPath("/WEB-INF/db/yoyaku.db");
-        
+
         String kanjaParam = request.getParameter("kanjaID");
         String bday = request.getParameter("bday");
 
@@ -55,13 +52,8 @@ public class LoginServlet extends HttpServlet {
         int kanjaID = Integer.parseInt(kanjaParam);
 
         // ③ DAO検索
-        kanjaDAO dao = new kanjaDAO(dbPath);
-        Kanja kanja=null;
-        try {
-        	    kanja=dao.login(kanjaID, bday);
-        }catch(Exception e) {
-        	 throw new ServletException(e);
-        }   
+        KanjaDAO dao = new KanjaDAO();
+        Kanja kanja = dao.login(kanjaID, bday);
 
         // ④ 該当なし
         if (kanja == null) {
@@ -73,24 +65,29 @@ public class LoginServlet extends HttpServlet {
      // ⑤ ログイン成功
         HttpSession session = request.getSession();
         session.setAttribute("loginUser", kanja);
-        session.setAttribute("loginKanja", kanja);
-
+     
       
         // 今日の予約がない → 通常の予約ページへ
         response.sendRedirect(request.getContextPath() + "/yoyaku");
+        
+        System.out.println("kanjaID=" + kanja.getKanjaID());
+        System.out.println("kanjaName=" + kanja.getKanjaName());
+        
+        System.out.println("loginUser = " + session.getAttribute("loginUser"));
+       
     }
 
-        
       
-       
-    
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         request.getRequestDispatcher("/WEB-INF/jsp/login.jsp")
                .forward(request, response);
+       
     }
     
+
 
 }

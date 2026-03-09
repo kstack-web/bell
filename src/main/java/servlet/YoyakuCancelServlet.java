@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,25 +19,17 @@ public class YoyakuCancelServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    	
-    	//DBパス
-        String dbPath = getServletContext().getRealPath("/WEB-INF/db/yoyaku.db");
 
         HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("loginKanja") == null) {
-            response.sendRedirect("login");
-            return;
-        }
 
-        Kanja kanja = (Kanja) session.getAttribute("loginKanja");
+        Kanja kanja = (Kanja) session.getAttribute("loginUser");
         int kanjaID = kanja.getKanjaID();
+        String today = LocalDate.now().toString();
 
-        YoyakuDAO dao = new YoyakuDAO(dbPath);
-        dao.cancelTodayByKanja(kanjaID);
+        YoyakuDAO dao = new YoyakuDAO();
+        dao.cancelTodayByKanja(kanjaID, today);
 
         request.getRequestDispatcher("/WEB-INF/jsp/yoyakucancel.jsp")
-        .forward(request, response);
-
- 
+               .forward(request, response);
     }
 }

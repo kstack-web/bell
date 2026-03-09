@@ -14,6 +14,8 @@ public class YoyakuTimeConfirmServlet extends HttpServlet {
             throws IOException, ServletException {
 
         String time = request.getParameter("time");
+        
+        System.out.println("[yoyakuTimeConfirm] time param = " + time);
         request.setAttribute("time", time);
 
         request.getRequestDispatcher("/WEB-INF/jsp/yoyakutimeconfirm.jsp")

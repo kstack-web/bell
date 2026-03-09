@@ -38,7 +38,7 @@
 
 <p class="question">以下の時間で予約しますか？</p>
 
-<c:set var="t" value="${time}" />
+<c:set var="t" value="${param.time}" />
 
 <p class="time">
 予約時間：
@@ -48,7 +48,7 @@ ${fn:substringAfter(t, "-")}:00
 
 <p class="btn">
     <form action="yoyakuExec" method="post">
-        <input type="hidden" name="time" value="${t}">
+        <input type="hidden" name="time" value="${param.time}">
         <input type="submit" value="予約する">
     </form>
 </p>

@@ -24,9 +24,6 @@ public class YoyakuExecServlet extends HttpServlet {
     	String time=request.getParameter("time");
     	
     	
-    	//DBパス
-        String dbPath = getServletContext().getRealPath("/WEB-INF/db/yoyaku.db");
-    	
     	HttpSession session = request.getSession();
         //ログイン時にオブジェクトごとセッションに入れていた
     	Kanja loginUser = (Kanja) session.getAttribute("loginUser");
@@ -35,18 +32,9 @@ public class YoyakuExecServlet extends HttpServlet {
     	
     	
     	 
-    	 YoyakuDAO dao1=new YoyakuDAO(dbPath);
+    	 YoyakuDAO dao1=new YoyakuDAO();
     	 
-   
-
-    	// ★ 同日の予約がすでにあるかチェック
-    	//if (dao1.existsByDateAndKanjaID(date, kanjaID)) {
-    	  //  request.setAttribute("error", "同じ日に複数の予約はできません。");
-    	    //request.getRequestDispatcher("/WEB-INF/jsp/yoyakuselect.jsp").forward(request, response);
-    	    //return;
-    	
-
-   
+  
     	 
     	 //予約登録
     	 dao1.insert(date, time, kanjaID);
